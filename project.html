@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notes - Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3, h4, p, pre, code {
+            color: #333;
+        }
+        pre, code {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Engineering Notes</h1>
+        <div id="notes">Loading...</div>
+    </div>
+    <!-- Load marked.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const rawUrl = 'https://raw.githubusercontent.com/hiltm/markdown/main/test.md';
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/'; // Public CORS proxy
+
+            fetch(corsProxy + rawUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // Convert Markdown to HTML
+                    const htmlContent = marked.parse(markdown);
+                    // Inject the HTML content into the div with id 'notes'
+                    document.getElementById('notes').innerHTML = htmlContent;
+                })
+                .catch(error => {
+                    document.getElementById('notes').innerHTML = 'Error loading notes: ' + error.message;
+                });
+        });
+    </script>
+</body>
+</html>
