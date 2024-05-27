@@ -1,5 +1,3 @@
-<!-- TODO add a back bar on top to go back to homepage -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,21 +9,45 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #1b1f22;
+        }
+        .top-bar {
+            background-color: #1b1f22;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: inline-block;
+        }
+        .top-bar a:hover {
+            background-color: #ddd;
+            color: black;
         }
         .container {
             max-width: 800px;
-            margin: auto;
-            background: #fff;
+            margin: 70px auto 20px auto; /* Adjust margin-top to make space for the fixed top bar */
+            background: #1b1f22;
+            color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1, h2, h3, h4, p, pre, code {
-            color: #333;
+            color: white;
         }
         pre, code {
-            background: #f1f1f1;
+            background: #1b1f22;
             padding: 10px;
             border-radius: 4px;
             overflow-x: auto;
@@ -33,10 +55,16 @@
     </style>
 </head>
 <body>
+    <!-- Top bar for navigation -->
+    <div class="top-bar">
+        <a href="index.html#projects">Back to Projects</a>
+    </div>
+
     <div class="container">
         <h1>Engineering Notes</h1>
         <div id="notes">Loading...</div>
     </div>
+
     <!-- Load marked.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
